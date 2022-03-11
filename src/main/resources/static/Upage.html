@@ -25,26 +25,21 @@
         <br>
         <span id="vinylInfo"></span>
 
-<span id="nyPlate">
-    <form name="new_Record" onsubmit="return addedRecord()">
-            <label>Name of record
-        <br>
-            <input type="text" name="recordName">
-                </label>
-        <br>
-            <label>Artist/group
+<section id="nyPlate">
+    <form name="new_Record" onsubmit="return null">
+            <label for="recordName">Name of record</label>
+            <input type="text" id="recordName">
+
+            <label for="artist">Artist/group</label>
                 <br>
-            <input type="text" name="artist">
-                </label>
-        <br>
-            <label>Release year
-        <br>
-            <input type="text" name="releaseYear">
-                </label>
-        <br>
-            <input type="submit" value="submit">
+            <input type="text" id="artist">
+
+            <label for="releaseYear">Release year</label>
+            <input type="text" id="releaseYear">
+
+            <input type="button" id="leggit">
     </form>
-</span>
+</section>
 
 
 

@@ -2,9 +2,10 @@ document.getElementById('vinylInfo');
 
 
 let InnEpost = document.forms["innlogging"]["epost"].value;
-let InnPassord= document.forms["innlogging"]["passord"].value;
-let validertEpost=false;
-let validertPassord=false;
+let InnPassord = document.forms["innlogging"]["passord"].value;
+let validertEpost = false;
+let validertPassord = false;
+
 /*function Logginn() {
 
     if (InnEpost.attributes.required=false){
@@ -48,25 +49,22 @@ function removeRecord() {
 
 function addedRecord() {
     // lag et objekt isteden for hver release
-    let release={
-
+    let release = {
+        RecordName: $("#recordName").val(),
+        artist: $("#artist").val(),
+        releaseYear: $("#releaseYear").val()
     }
-    let RecordName = document.forms["new_Record"]["recordName"].value;
-    let Artist = document.forms["new_Record"]["artist"].value;
-    let Release = document.forms["new_Record"]["releaseYear"].value;
-    if (RecordName == "") {
+
+    if (release.RecordName === "") {
         alert("Fill out the name of the  record");
     }
-    if (Artist == "") {
+    if (release.artist === "") {
         alert("fil out the name of the artist");
     }
-    if (Release == "") {
+    if (release.releaseYear === "") {
         alert("fill out the date");
-    } else {
-        alert("cool, sweet, nice");
     }
 }
-
 
 
 
