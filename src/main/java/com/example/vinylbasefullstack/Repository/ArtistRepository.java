@@ -2,17 +2,33 @@ package com.example.vinylbasefullstack.Repository;
 
 import com.example.vinylbasefullstack.model.Artist;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ArtistRepository {
     private List<Artist>artister= new ArrayList<>();
 
-    public void addArtists(){
+    public ArtistRepository(List<Artist> artister) {
+        this.artister = artister;
+    }
+
+    public void addExample(){
         Artist BobDylan= new Artist("Bob Dylan","1961" ,"2022");
         artister.add(BobDylan);
 
     }
+    public void addArtist(Artist addArtist){
+        artister.add(addArtist);
+        for (Artist artist:artister){
+            if (artist.getName().equals(addArtist.getName())){
+                artister.remove(this);
+            }
+
+        }
+    }
+
+    public List<Artist>findArtistlist (){
+        return artister;
+    }
+
 }
