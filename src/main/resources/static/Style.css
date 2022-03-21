@@ -80,3 +80,21 @@ img {
     max-width: 40%;
     height: auto;
 }
+
+input[type=button]{
+    background-color: white;
+    color: black;
+    margin: 1rem;
+    border-radius: 1rem;
+    width: auto;
+}
+#newUserlbl{
+    padding: 1rem;
+    position: relative;
+
+}
+#newuserDiv{
+    display: flex;
+    justify-content: center;
+
+}

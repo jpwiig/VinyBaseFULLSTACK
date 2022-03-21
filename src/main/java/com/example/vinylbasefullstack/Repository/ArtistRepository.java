@@ -1,10 +1,11 @@
 package com.example.vinylbasefullstack.Repository;
 
 import com.example.vinylbasefullstack.model.Artist;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class ArtistRepository {
     private List<Artist>artister= new ArrayList<>();
 
