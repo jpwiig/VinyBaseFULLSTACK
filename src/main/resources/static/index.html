@@ -27,14 +27,19 @@
     <h2>Log in to see your Records!</h2>
     <form name="innlogging"  action="Upage.html">
         <label> Email </label> <br>
-        <input type="email" name="epost" required>
+        <input id="email" name="epost" required>
         <br>
         <label>Password</label><br>
-        <input type="password" name="passord">
+        <input id="password" name="passord">
         <br>
-        <input type="submit" name="submit">
+        <input id="submit" name="submit">
     </form>
-    <span id="vinylInfo"></span> 
+    <div id="newuserDiv">
+    <label for="newUserbtn" id="newUserlbl">new user?</label>
+    <input type="button" id="newUserbtn" name="register a new user">
+    </div>
+    <div id="regisationform"></div>
+    <span id="vinylInfo"></span>
     <p><a href="Upage.html" target="blank">innloggings side</a>
     </body>
 </html>

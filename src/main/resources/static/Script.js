@@ -3,9 +3,13 @@ document.getElementById('vinylInfo');
 
 let InnEpost = document.forms["innlogging"]["epost"].value;
 let InnPassord = document.forms["innlogging"]["passord"].value;
-let validertEpost = false;
-let validertPassord = false;
-
+let Credentials= {
+    mail: $("#email").val(),
+    password:$("#password").val(),
+}
+$("#newUser").click(()=>{
+    $("#regisationform").val()
+})
 /*function Logginn() {
 
     if (InnEpost.attributes.required=false){
