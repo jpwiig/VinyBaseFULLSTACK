@@ -1,12 +1,16 @@
 package com.example.vinylbasefullstack.Repository;
 
 import com.example.vinylbasefullstack.model.Artist;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class ArtistRepository {
+    private Logger logger = LoggerFactory.getLogger(ArtistRepository.class);
     private List<Artist>artister= new ArrayList<>();
 
     public ArtistRepository(List<Artist> artister) {

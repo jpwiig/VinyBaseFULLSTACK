@@ -36,6 +36,5 @@ public class Artist {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-
 }
 

@@ -95,6 +95,10 @@ input[type=button]{
 }
 #newuserDiv{
     display: flex;
-    justify-content: center;
+    justify-content:center;
 
+}
+#loginn{
+    display: flex;
+    justify-content:center;
 }
