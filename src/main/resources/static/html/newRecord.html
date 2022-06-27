@@ -10,22 +10,20 @@
     <title>Vinylbase</title>
 </head>
 <body>
-<span id="nyPlate">
-<form>
-    <label>Name of record</label>
-    <br>
+<span id="addrecord">
+<form id="NewRecord">
+    <label for="Platenavn">Name of record</label>
     <input id="Platenavn">
-    <br>
-    <label>Artist/group</label>
-    <br>
+    <label for="artist">Artist/group</label>
     <input id="artist">
-    <br>
-    <label>Release year</label>
-    <br>
-    <input id="year">
-    <br>
-    <button>submit</button>
+    <label for="serialnumber">Serial number</label>
+    <input type="text" id="serialnumber">
+    <label for="year" onchange="checkrange(this.value)">Release year</label>
+    <div id="yearerr"></div>
+    <input id="year" type="number" min="1900" max="2032">
+    <input id="yearrange" type="range" min="1900" max="2032" value="1900" class="slider" onchange="yearRange(this.value)">
+    <button id="sumbitentry">submit</button>
 </form>
-    </span>
+</span>
 </body>
 </html>
