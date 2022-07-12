@@ -9,6 +9,7 @@ import com.example.vinylbasefullstack.model.Vinyl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +49,15 @@ public class VinylBaseController {
 
     }
 
+    }
+    @PostMapping("api/registeruser")
+    public void registeruser(User newuser, HttpServletResponse response) throws IOException{
+    try {
+        Repo.adduser(newuser,response);
+    } catch (Exception e){
+        response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "feil i getmapping og lagring av bruker");
+
+    }
     }
 
     @PostMapping("api/addvinyl")

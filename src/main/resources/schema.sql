@@ -1,3 +1,4 @@
+/*creates tabels for the database*/
 CREATE TABLE Artist(
                        artistid int auto_increment not null,
                        ArtistName varchar (60),
@@ -19,7 +20,7 @@ create table vinyl(
 Create table user (
                       userid  int auto_increment not null ,
                       username varchar(60),
-                      name varchar(60),
+                      fname varchar(60),
                       email varchar(80),
                       passord varchar(90)
 

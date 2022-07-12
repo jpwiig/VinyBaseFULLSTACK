@@ -50,6 +50,12 @@ function uservalidation(user){
         feilmelding=false;
     }
     }
+    if ($("#password").val()!= $("#repeatpassword").val()) {
+        feilmelding=false;
+        $("#passerror").html("Du skrev ulikt passord ").style("red");
+        $("#reppasserror").html("Du skrev ulikt passord ").style("red");
+    }
+
 }
 function vinylvaldiering(vinyl){
     //server side validering, sjekker i db

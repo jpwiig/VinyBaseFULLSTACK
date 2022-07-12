@@ -8,10 +8,16 @@ public class Vinyl {
     private String releasedate;
     private Artist artist;
 
-    public Vinyl(String recordName, String releasedate, Artist artist) {
+    private String genre;
+
+    private String country;
+
+    public Vinyl(String recordName, String releasedate, Artist artist, String genre, String country) {
         this.recordName = recordName;
         this.releasedate = releasedate;
         this.artist = artist;
+        this.genre = genre;
+        this.country = country;
     }
 
     public String getRecordName() {
@@ -36,5 +42,21 @@ public class Vinyl {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

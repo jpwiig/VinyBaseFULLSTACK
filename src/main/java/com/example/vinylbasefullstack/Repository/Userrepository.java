@@ -23,7 +23,7 @@ public class Userrepository {
 
     private Logger logger = LoggerFactory.getLogger(Userrepository.class);
     public void adduser(User newuser, HttpServletResponse response) throws IOException {
-      String sql= "insert into user(username, name, email, passord) values (?,?,?,?)";
+      String sql= "insert into user(username, fname, email, passord) values (?,?,?,?)";
       //egen klasse for kryptering
         try {
             db.update(sql, newuser.getUsername(), newuser.getName(), newuser.getEmail(),kryptering(newuser) );
