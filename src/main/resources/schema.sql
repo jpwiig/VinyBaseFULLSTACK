@@ -1,35 +1,35 @@
 /*creates tabels for the database*/
 CREATE TABLE Artist(
-                       artistid int auto_increment not null,
+                       artistid serial not null,
                        ArtistName varchar (60),
                        Startdate date,
                        enddate date,
-                       primary key (ArtistName)
+                       primary key (artistid)
 );
 
 create table vinyl(
-                      vinylid int auto_increment,
-                      ArtistName varchar(60),
-                      releaseyear year,
+                      vinylid serial,
+                      artistid int,
+                      releaseyear date,
                       genre varchar(60),
                       country varchar(60),
                       primary key (vinylid),
-                      foreign key (ArtistName) references Artist(artistid)
+                      foreign key (artistid) references Artist(artistid)
 );
 
-Create table user (
-                      userid  int auto_increment not null ,
-                      username varchar(60),
-                      fname varchar(60),
-                      email varchar(80),
-                      passord varchar(90)
-
+Create table users (
+                       userid  serial,
+                       username varchar(60),
+                       fname varchar(60),
+                       email varchar(80),
+                       passord varchar(90),
+                       primary key (userid)
 );
 create table collections (
-                             collectid int auto_increment not null,
+                             collectid serial,
                              userid int not null ,
                              vinyl int not null ,
                              primary key (collectid),
-                             foreign key (userid) references user(userid),
+                             foreign key (userid) references users(userid),
                              foreign key (vinyl) references vinyl(vinylid)
 );
