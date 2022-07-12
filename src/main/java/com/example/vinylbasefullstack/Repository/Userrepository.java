@@ -18,7 +18,6 @@ import java.util.List;
 
 @Repository
 public class Userrepository {
-@Autowired
     private JdbcTemplate db;
 
     private Logger logger = LoggerFactory.getLogger(Userrepository.class);
@@ -26,14 +25,22 @@ public class Userrepository {
       String sql= "insert into user(username, fname, email, passord) values (?,?,?,?)";
       //egen klasse for kryptering
         try {
-            db.update(sql, newuser.getUsername(), newuser.getName(), newuser.getEmail(),kryptering(newuser) );
+            db.update(sql, newuser.getUsername(), newuser.getName(), newuser.getEmail(),kryptering(newuser.getPassword()) );
         } catch (Exception e){
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "feil i lagring av kunder");
         }
     }
 
     public boolean checkuser(User user, HttpServletResponse response) throws IOException{
+        String sql = "SELECT passord FROM users where userid = ? and username =?";
         try{
+            String inPW = kryptering(user.getPassword());
+
+            if (checkpw(inPW,sql)) {
+                return true;
+            } if (!checkpw(inPW,sql)) {
+                return false;
+            }
 
         } catch (Exception e){
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i brukercheck");
@@ -45,8 +52,8 @@ public class Userrepository {
         if (BCrypt.checkpw(hash, dbpassword)) return true;
         else return false;
     }
-    private String kryptering (User user){
-        return BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(20));
+    private String kryptering (String passord){
+        return BCrypt.hashpw(passord, BCrypt.gensalt(20));
     }
 
 }
