@@ -1,5 +1,5 @@
 //regexp, kall til lagring av ny bruker
-()=>{
+$(()=>{
     $("#newregistation").click(() => {
         $.post("api/addUser", (user) => {
             user = {
@@ -9,7 +9,7 @@
                 password: $("#password").val(),
             }
         })
-})}
+})})
 function uservalidation(user){
     const regexpmail=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const regexppassword=/^[A-Za-z0-9]{6,22}$/;

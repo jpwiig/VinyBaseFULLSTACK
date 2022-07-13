@@ -1,6 +1,6 @@
 //kall til ny bruker, registering av en ny bruker
 let user;
-() => {
+$(() => {
     console.log("redo")
 
     $("#loginn").click(()=>{
@@ -18,4 +18,4 @@ let user;
     })
 
 
-}
+})
