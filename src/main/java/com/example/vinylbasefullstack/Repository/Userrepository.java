@@ -22,7 +22,7 @@ public class Userrepository {
 
     private Logger logger = LoggerFactory.getLogger(Userrepository.class);
     public void adduser(User newuser, HttpServletResponse response) throws IOException {
-      String sql= "insert into user(username, fname, email, passord) values (?,?,?,?)";
+      String sql= "insert into users(username, fname, email, passord) values (?,?,?,?)";
       //egen klasse for kryptering
         try {
             db.update(sql, newuser.getUsername(), newuser.getName(), newuser.getEmail(),kryptering(newuser.getPassword()) );
@@ -39,11 +39,13 @@ public class Userrepository {
             if (checkpw(inPW,sql)) {
                 return true;
             } if (!checkpw(inPW,sql)) {
+                response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feil passord");
                 return false;
+
             }
 
         } catch (Exception e){
-            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i brukercheck");
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"brukeren er ikke lagret i systemet, venligist register brukeren");
             return false;
         }
         return false;

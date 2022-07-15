@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,7 +31,8 @@ public class VinylBaseController {
     ArtistRepository repository;
     @Autowired
     Userrepository Repo;
-
+    @Autowired
+    private HttpSession session;
     private Logger log = LoggerFactory.getLogger(VinylBaseController.class);
 @GetMapping("api/getvinyl")
     public List<Vinyl> returnVinyl(){
@@ -59,6 +62,19 @@ public class VinylBaseController {
 
     }
     }
+
+    @PostMapping ("api/loginn")
+        public boolean login(User oldUser, HttpServletResponse response) throws IOException{
+        try {
+            Repo.checkuser(oldUser, response);
+            session.setAttribute("logginn", true);
+            return true;
+        }catch (Exception e) {
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"feil i registering av bruker, sikker på at du har skrevet inn riktig passord?");
+            return  false;
+        }
+    }
+
 
     @PostMapping("api/addvinyl")
     public void addvinyl (Vinyl newvinyl){

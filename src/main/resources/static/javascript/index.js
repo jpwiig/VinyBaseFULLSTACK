@@ -9,7 +9,8 @@ $(() => {
             email : $("#email").val(),
             password : $("#password").val()
         }
-    })
+    }
+    )
     })
 
     $("#newUserbtn").click(()=>{

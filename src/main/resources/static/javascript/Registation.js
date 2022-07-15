@@ -1,14 +1,20 @@
 //regexp, kall til lagring av ny bruker
+let user;
 $(()=>{
     $("#newregistation").click(() => {
-        $.post("api/addUser", (user) => {
-            user = {
-                mail: $("#email").val(),
-                username: $("#username").val(),
-                name: $("#name").val(),
-                password: $("#password").val(),
+        user = {
+            mail: $("#email").val(),
+            username: $("#username").val(),
+            name: $("#name").val(),
+            password: $("#password").val(),
+        }
+        if (uservalidation(user)){
+            $.post("api/addUser", (user) => {
+            })
+            if (!uservalidation(user)){
+
             }
-        })
+        }
 })})
 function uservalidation(user){
     const regexpmail=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -33,5 +39,13 @@ function uservalidation(user){
         $("#passerror").html("Du skrev ulikt passord ").style("red");
         $("#reppasserror").html("Du skrev ulikt passord ").style("red");
     }
+return feilmelding;
+}
+
+function clearform(){
+    $("#username").val("");
+    $("#email").val("");
+    $("#password").val("");
+    $("#repeatpassword").val("");
 
 }
