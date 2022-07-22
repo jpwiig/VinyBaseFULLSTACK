@@ -1,15 +1,19 @@
 package com.example.vinylbasefullstack.Repository;
 
 import com.example.vinylbasefullstack.model.Artist;
+import com.example.vinylbasefullstack.model.User;
 import com.example.vinylbasefullstack.model.Vinyl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +29,7 @@ Logger log = LoggerFactory.getLogger(VinylRepository.class);
     @Transactional
     public void addVinyl(Vinyl newVinyl) {
 
-        String sql1 ="INSERT INTO vinyl (ArtistName, releaseyear, genre, country) VALUES (?,?,?,?)";
+        String sql1 ="INSERT INTO vinyl ( releaseyear, genre, country) VALUES (?,?,?,?)";
         String sql2="SELECT * FROM Artist;";
         String sql3="INSERT INTO Artist (ArtistName) VALUES ?";
         KeyHolder id = new GeneratedKeyHolder();
@@ -49,5 +53,18 @@ Logger log = LoggerFactory.getLogger(VinylRepository.class);
 
     public List<Vinyl>returnVinyl(){
         return records;
+    }
+    public List<Vinyl>SearchVinyl(User loggedinn, String search, HttpServletResponse response) throws IOException {
+        try{
+                String getUserId = "Select userid from users where username = ?";
+                String sql = "Select * From collections where userid = ? and vinyl like '%?%' ";
+                String nysql = String.valueOf(db.update(sql, getUserId, search));
+                return db.query(nysql, new BeanPropertyRowMapper<>(Vinyl.class));
+
+        } catch (Exception e){
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Feil i søking av samling");
+            return null;
+        }
+
     }
 }

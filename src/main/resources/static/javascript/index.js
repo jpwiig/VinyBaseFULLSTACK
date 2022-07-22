@@ -16,7 +16,7 @@ $(() => {
     $("#newUserbtn").click(()=>{
         console.log("btn new user");
         window.open("html/Registation.html");
-    })
+    }).fail(xhr.)
 
 
 })
