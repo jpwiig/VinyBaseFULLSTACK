@@ -8,12 +8,13 @@ $(()=>{
             name: $("#name").val(),
             password: $("#password").val(),
         }
-        if (uservalidation(user)){
+        let okuser  = uservalidation(user);
+        if (okuser){
             $.post("api/addUser", (user) => {
+            }).fail((jqHXR)=>{
+                const JSON = $.parseJSON(jqHXR.responseText);
+                alert(JSON); 
             })
-            if (!uservalidation(user)){
-
-            }
         }
 })})
 function uservalidation(user){

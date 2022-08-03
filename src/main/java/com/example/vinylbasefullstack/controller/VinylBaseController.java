@@ -23,7 +23,6 @@ import java.util.List;
 
 @RestController
 
-
 public class VinylBaseController {
     @Autowired
     VinylRepository repo;
@@ -63,16 +62,23 @@ public class VinylBaseController {
     }
     }
 
-    @PostMapping ("api/loginn")
+    @GetMapping ("api/loginn")
         public boolean login(User oldUser, HttpServletResponse response) throws IOException{
         try {
-            Repo.checkuser(oldUser, response);
-            session.setAttribute("logginn", true);
-            return true;
+            boolean checkuser=Repo.checkuser(oldUser, response);
+            if (checkuser) {
+                session.setAttribute("logginn", true);
+                return true;
+            }
+            if(!checkuser) {
+                session.setAttribute("logginn", false);
+                return false;
+            }
         }catch (Exception e) {
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"feil i registering av bruker, sikker på at du har skrevet inn riktig passord?");
             return  false;
         }
+        return false;
     }
 
 
