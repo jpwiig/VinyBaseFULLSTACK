@@ -30,7 +30,6 @@ Logger log = LoggerFactory.getLogger(VinylRepository.class);
     public void addVinyl(Vinyl newVinyl) {
 
         String sql1 ="INSERT INTO vinyl ( releaseyear, genre, country) VALUES (?,?,?,?)";
-        String sql2="SELECT * FROM Artist;";
         String sql3="INSERT INTO Artist (ArtistName) VALUES ?";
         KeyHolder id = new GeneratedKeyHolder();
         try {
@@ -66,5 +65,14 @@ Logger log = LoggerFactory.getLogger(VinylRepository.class);
             return null;
         }
 
+    }
+
+    public void deleterecord(Vinyl crappyvinyl, HttpServletResponse response) throws IOException {
+        try {
+            String sql = "drop * from collection where vinylid = ?";
+            db.update(sql);
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "feil i sletting av vinyl");
+        }
     }
 }

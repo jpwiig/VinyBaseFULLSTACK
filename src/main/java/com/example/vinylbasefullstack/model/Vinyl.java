@@ -12,12 +12,22 @@ public class Vinyl {
 
     private String country;
 
-    public Vinyl(String recordName, String releasedate, Artist artist, String genre, String country) {
+    private int id;
+    public Vinyl(String recordName, String releasedate, Artist artist, String genre, String country, int id) {
         this.recordName = recordName;
         this.releasedate = releasedate;
         this.artist = artist;
         this.genre = genre;
         this.country = country;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRecordName() {
