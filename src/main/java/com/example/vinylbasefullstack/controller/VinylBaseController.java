@@ -1,9 +1,11 @@
 package com.example.vinylbasefullstack.controller;
 
 import com.example.vinylbasefullstack.Repository.ArtistRepository;
+import com.example.vinylbasefullstack.Repository.BandRepository;
 import com.example.vinylbasefullstack.Repository.Userrepository;
 import com.example.vinylbasefullstack.Repository.VinylRepository;
 import com.example.vinylbasefullstack.model.Artist;
+import com.example.vinylbasefullstack.model.Band;
 import com.example.vinylbasefullstack.model.User;
 import com.example.vinylbasefullstack.model.Vinyl;
 import org.slf4j.Logger;
@@ -30,6 +32,9 @@ public class VinylBaseController {
     ArtistRepository repository;
     @Autowired
     Userrepository Repo;
+
+    @Autowired
+    BandRepository bands;
     @Autowired
     private HttpSession session;
     private Logger log = LoggerFactory.getLogger(VinylBaseController.class);
@@ -92,7 +97,20 @@ public class VinylBaseController {
        return repo.returnVinyl();
     }
 
+    @GetMapping("api/addartist")
+    public void addartist(Artist newartist){
+        repository.addArtist(newartist);
+    }
+    @GetMapping("api/addband")
+    public void addband(Band newband){
+    boolean ok =  bands.checkIfmemberIsInDB(newband);
+    if (ok){
+        //adds the band in the database
+
+    }
+    }
 }
+
 
 
 
